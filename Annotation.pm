@@ -500,7 +500,7 @@ sub find_overlapping_SNVs {
 #        }
 #    }
     foreach my $x ( keys %$oute ) {
-        foreach my $y ( keys ${$oute}{$x} ) {
+        foreach my $y ( keys %{$oute->{$x}} ) {
             ${$outb}{$x}{$y} = ${$oute}{$x}{$y};
         }
     }
@@ -515,19 +515,19 @@ sub find_overlapping_SNVs {
         ${$curr_hash}{'Non-exonic'} = ();
         ${$curr_hash}{'NonOverlapped'} = ();
         if ( exists ${$outb}{$line_id} ) {
-            foreach my $variant ( keys ${$outb}{$line_id} ) {
+            foreach my $variant ( keys %{$outb->{$line_id}} ) {
                 ${$curr_hash}{'NonOverlapped'}{$variant} =
                   ${$outb}{$line_id}{$variant};
             }
         }
         if ( exists ${$outc}{$line_id} ) {
-            foreach my $variant ( keys ${$outc}{$line_id} ) {
+            foreach my $variant ( keys %{${$outc}->{$line_id}} ) {
                 ${$curr_hash}{'Non-exonic'}{$variant} =
                   ${$outc}{$line_id}{$variant};
             }
         }
         if ( exists ${$outi}{$line_id} ) {
-            foreach my $variant ( keys ${$outi}{$line_id} ) {
+            foreach my $variant ( keys %{${$outi}->{$line_id}} ) {
                 ${$curr_hash}{'Non-exonic'}{$variant} =
                   ${$outi}{$line_id}{$variant};
             }
